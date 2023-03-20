@@ -9,4 +9,6 @@ namespace Prunus {
 		~Application();
 		void Run();
 	};
+
+	Application* CreateApplication();
 }

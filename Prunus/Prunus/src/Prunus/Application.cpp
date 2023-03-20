@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <iostream>
 
 namespace Prunus {
 	Application::Application() {
@@ -10,8 +11,8 @@ namespace Prunus {
 	}
 
 	void Application::Run() {
-		while (true) {
-
-		}
+		std::cout << "Hello from application";
 	}
+
+
 }

@@ -1,4 +1,5 @@
 #pragma once
 
-#include "Prunus/Core.h";
-#include "Prunus/Application.h";
+#include "Prunus/Application.h"
+#include "Prunus/EntryPoint.h"
+#include <iostream>
