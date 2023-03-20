@@ -1,0 +1,3 @@
+[submodule "Prunus/Prunus/vendor/spdlog"]
+	path = Prunus/Prunus/vendor/spdlog
+	url = https://github.com/gabime/spdlog
