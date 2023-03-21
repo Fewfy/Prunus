@@ -7,4 +7,5 @@
 		#define PRUNUS_API __declspec(dllimport)
 	#endif
 #else
+#error Only support Windows!
 #endif

@@ -3,6 +3,7 @@
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{c7576f76-5e9d-43d6-94e3-4e879dcf8d0e}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -10,8 +11,10 @@
     <ClInclude Include="src\Prunus\Application.h" />
     <ClInclude Include="src\Prunus.h" />
     <ClInclude Include="src\Prunus\EntryPoint.h" />
+    <ClInclude Include="src\Prunus\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Prunus\Application.cpp" />
+    <ClCompile Include="src\Prunus\Log.cpp" />
   </ItemGroup>
 </Project>

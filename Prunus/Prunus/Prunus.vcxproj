@@ -70,7 +70,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PRUNUS_BUILD_DLL;PRUNUS_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Prunus\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -86,9 +86,11 @@
     <ClInclude Include="src\Prunus\Application.h" />
     <ClInclude Include="src\Prunus\Core.h" />
     <ClInclude Include="src\Prunus\EntryPoint.h" />
+    <ClInclude Include="src\Prunus\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Prunus\Application.cpp" />
+    <ClCompile Include="src\Prunus\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
