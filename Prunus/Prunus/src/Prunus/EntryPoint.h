@@ -7,6 +7,7 @@ int main(int argc, char** argv)
 {
 	Prunus::Log::Init();
 	PRUNUS_CORE_WARN("Initialized Log!");
+	PRUNUS_INFO("Hello PreMake!!");
 
 	
 	auto app = Prunus::CreateApplication();

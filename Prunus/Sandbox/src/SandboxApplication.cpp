@@ -1,9 +1,8 @@
 #include <Prunus.h>
-#include <iostream>
 
-class Sandbox : public Prunus::Application 
+class Sandbox : public Prunus::Application
 {
-public :
+public:
 	Sandbox()
 	{
 
