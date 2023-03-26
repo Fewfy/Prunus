@@ -152,7 +152,6 @@
   <ItemGroup>
     <ClCompile Include="src\Prunus\Application.cpp" />
     <ClCompile Include="src\Prunus\Log.cpp" />
-    <ClCompile Include="src\Prunus\Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
