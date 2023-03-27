@@ -143,10 +143,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Prunus\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Prunus\Events\Event.h" />
     <ClInclude Include="src\Prunus.h" />
     <ClInclude Include="src\Prunus\Application.h" />
     <ClInclude Include="src\Prunus\Core.h" />
     <ClInclude Include="src\Prunus\EntryPoint.h" />
+    <ClInclude Include="src\Prunus\Events\KeyEvent.h" />
+    <ClInclude Include="src\Prunus\Events\MouseEvent.h" />
     <ClInclude Include="src\Prunus\Log.h" />
   </ItemGroup>
   <ItemGroup>
