@@ -1,6 +1,9 @@
 #include "Application.h"
 #include <iostream>
 
+#include "Prunus/Events/ApplicationEvent.h"
+#include "Prunus/Log.h"
+
 namespace Prunus {
 	Application::Application() {
 
@@ -11,8 +14,7 @@ namespace Prunus {
 	}
 
 	void Application::Run() {
-		std::cout << "Hello from application";
+		WindowResizeEvent e(1200, 720);
+		PRUNUS_TRACE(e);
 	}
-
-
 }

@@ -6,6 +6,7 @@
 /**/*/Debug
 /**/*/.vs/*
 /**/*/bin/
+!/Prunus/vendor/bin
 /**/*/bin-int/
 *.vcxproj.user
 /**/*/x64
