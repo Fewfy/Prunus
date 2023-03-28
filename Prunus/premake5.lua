@@ -17,6 +17,10 @@ project "Prunus"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    pchheader "pnpch.h"
+    pchsource "Prunus/src/pnpch.cpp"
+
     files
     {
         "%{prj.name}/src/**.h",

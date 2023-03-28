@@ -6,3 +6,6 @@ This project is to follow Yan Chernikov's course step by step to build a gaming 
 1. `git submodule update`
 
 2. execute `Prunus\GenerateProjects.bat` file
+
+Hint:
+1. the include reference to the precompiled files must be put in the begining of the file

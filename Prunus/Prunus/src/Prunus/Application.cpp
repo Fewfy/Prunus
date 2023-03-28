@@ -1,6 +1,5 @@
+#include "pnpch.h"
 #include "Application.h"
-#include <iostream>
-
 #include "Prunus/Events/ApplicationEvent.h"
 #include "Prunus/Log.h"
 
@@ -15,6 +14,10 @@ namespace Prunus {
 
 	void Application::Run() {
 		WindowResizeEvent e(1200, 720);
-		PRUNUS_TRACE(e);
+		if (e.IsInCategory(EventCategoryApplication))
+		{
+			PRUNUS_TRACE(e);
+		}
+		
 	}
 }
