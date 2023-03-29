@@ -1,6 +1,6 @@
 [submodule "Prunus/Prunus/vendor/spdlog"]
 	path = Prunus/Prunus/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule ".\\Prunus\\Prunus\\vendor\\GLFW"]
-	path = .\\Prunus\\Prunus\\vendor\\GLFW
+[submodule "Prunus/Prunus/vendor/GLFW"]
+	path = Prunus/Prunus/vendor/GLFW
 	url = https://github.com/Fewfy/glfw.git

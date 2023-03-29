@@ -89,7 +89,8 @@ project "Sandbox"
     includedirs
     {
         "Prunus/vendor/spdlog/include",
-        "Prunus/src"   
+        "Prunus/src",
+        "%{IncludeDir.GLFW}"
     }
 
     links
