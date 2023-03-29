@@ -149,6 +149,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Prunus.h" />
     <ClInclude Include="src\Prunus\Application.h" />
     <ClInclude Include="src\Prunus\Core.h" />
@@ -158,9 +159,11 @@
     <ClInclude Include="src\Prunus\Events\KeyEvent.h" />
     <ClInclude Include="src\Prunus\Events\MouseEvent.h" />
     <ClInclude Include="src\Prunus\Log.h" />
+    <ClInclude Include="src\Prunus\Window.h" />
     <ClInclude Include="src\pnpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Prunus\Application.cpp" />
     <ClCompile Include="src\Prunus\Log.cpp" />
     <ClCompile Include="src\pnpch.cpp">

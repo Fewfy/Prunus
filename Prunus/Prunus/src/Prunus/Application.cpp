@@ -4,20 +4,20 @@
 #include "Prunus/Log.h"
 
 namespace Prunus {
-	Application::Application() {
-
+	Application::Application() 
+	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application() {
 
 	}
 
-	void Application::Run() {
-		WindowResizeEvent e(1200, 720);
-		if (e.IsInCategory(EventCategoryApplication))
+	void Application::Run() 
+	{
+		while (m_Running)
 		{
-			PRUNUS_TRACE(e);
+			m_Window->OnUpdate();
 		}
-		
 	}
 }
