@@ -10,6 +10,11 @@ workspace "Prunus"
 
 outputdir = "${cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Prunus/vendor/GLFW/include"
+
+include "Prunus/vendor/GLFW"
+
 project "Prunus"
     location "Prunus"
     kind "SharedLib"
@@ -30,7 +35,14 @@ project "Prunus"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"    
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
