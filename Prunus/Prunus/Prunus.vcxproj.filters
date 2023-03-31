@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Prunus">
       <UniqueIdentifier>{52ACCCCA-3E4E-F7A0-2709-0BF5134A7EF1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Prunus\Events">
+      <UniqueIdentifier>{F607DFE0-62C8-5A17-2B03-A49497829FF3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Prunus.h" />
     <ClInclude Include="src\Prunus\Application.h">
       <Filter>Prunus</Filter>
@@ -16,19 +28,36 @@
     <ClInclude Include="src\Prunus\EntryPoint.h">
       <Filter>Prunus</Filter>
     </ClInclude>
+    <ClInclude Include="src\Prunus\Events\ApplicationEvent.h">
+      <Filter>Prunus\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Prunus\Events\Event.h">
+      <Filter>Prunus\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Prunus\Events\KeyEvent.h">
+      <Filter>Prunus\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Prunus\Events\MouseEvent.h">
+      <Filter>Prunus\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Prunus\Log.h">
       <Filter>Prunus</Filter>
     </ClInclude>
+    <ClInclude Include="src\Prunus\Window.h">
+      <Filter>Prunus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pnpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Prunus\Application.cpp">
       <Filter>Prunus</Filter>
     </ClCompile>
     <ClCompile Include="src\Prunus\Log.cpp">
       <Filter>Prunus</Filter>
     </ClCompile>
-    <ClCompile Include="src\Prunus\Source.cpp">
-      <Filter>Prunus</Filter>
-    </ClCompile>
+    <ClCompile Include="src\pnpch.cpp" />
   </ItemGroup>
 </Project>
