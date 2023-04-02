@@ -48,8 +48,8 @@ project "Prunus"
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
-        systemversion "latest"
-
+        systemversion "10.0.19041.0"
+  
         defines
         {
             "PRUNUS_BUILD_DLL",
@@ -63,14 +63,17 @@ project "Prunus"
     
     filter "configurations:Debug"
         defines "PRUNUS_DEBUG"
+		buildoptions "/MDd"
         symbols "On"
     
     filter "configurations:Release"
         defines "PRUNUS_RELEASE"
+		buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "PRUNUS_DIST"
+		buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
@@ -101,7 +104,7 @@ project "Sandbox"
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
-        systemversion "latest"
+        systemversion "10.0.19041.0"
 
         defines
         {
@@ -111,11 +114,14 @@ project "Sandbox"
     filter "configurations:Debug"
         defines "PRUNUS_DEBUG"
         symbols "On"
+		buildoptions "/MDd"
     
     filter "configurations:Release"
         defines "PRUNUS_RELEASE"
         optimize "On"
+		buildoptions "/MD"
 
     filter "configurations:Dist"
         defines "PRUNUS_DIST"
         optimize "On"
+		buildoptions "/MD"

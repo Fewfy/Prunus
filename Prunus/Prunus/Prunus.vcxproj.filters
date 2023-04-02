@@ -40,6 +40,12 @@
     <ClInclude Include="src\Prunus\Events\MouseEvent.h">
       <Filter>Prunus\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Prunus\Layer.h">
+      <Filter>Prunus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Prunus\LayerStack.h">
+      <Filter>Prunus</Filter>
+    </ClInclude>
     <ClInclude Include="src\Prunus\Log.h">
       <Filter>Prunus</Filter>
     </ClInclude>
@@ -53,6 +59,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Prunus\Application.cpp">
+      <Filter>Prunus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Prunus\Layer.cpp">
+      <Filter>Prunus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Prunus\LayerStack.cpp">
       <Filter>Prunus</Filter>
     </ClCompile>
     <ClCompile Include="src\Prunus\Log.cpp">
