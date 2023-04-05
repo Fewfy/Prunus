@@ -57,7 +57,8 @@ project "Prunus"
         defines
         {
             "PRUNUS_BUILD_DLL",
-            "PRUNUS_PLATFORM_WINDOWS"
+            "PRUNUS_PLATFORM_WINDOWS",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
