@@ -14,7 +14,7 @@ namespace Prunus
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Prunus Engine", 
-			unsigned int width = 1280, 
+			unsigned int width = 2480, 
 			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
 		{

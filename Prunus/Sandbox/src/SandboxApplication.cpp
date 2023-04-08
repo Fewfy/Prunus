@@ -10,7 +10,6 @@ public:
 
 	void OnUpdate() override
 	{
-		PRUNUS_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Prunus::Event& event) override
@@ -25,6 +24,7 @@ public:
 	Sandbox()
 	{
 		Application::PushLayer(new ExampleLayer());
+		Application::PushOverlay(new Prunus::ImGuiLayer());
 	}
 
 	~Sandbox() {

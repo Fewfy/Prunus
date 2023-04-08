@@ -33,6 +33,7 @@ namespace Prunus {
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
+		inline bool Handled() { return m_Handled; }
 		inline bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
