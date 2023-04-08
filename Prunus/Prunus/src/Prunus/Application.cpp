@@ -1,6 +1,6 @@
 #include "pnpch.h"
 #include "Application.h"
-#include "Prunus/Events/ApplicationEvent.h"
+
 #include "Prunus/Log.h"
 
 #include <glad/glad.h>
@@ -26,14 +26,15 @@ namespace Prunus {
 	{
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 1);
+			glClearColor(1, 0, 0, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
 
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
+
+			m_Window->OnUpdate();
 		}
 	}
 
@@ -59,7 +60,7 @@ namespace Prunus {
 		{
 			--it;
 			(*it)->OnEvent(e);
-			if (e.Handled())
+			if (e.Handled)
 			{
 				break;
 			}

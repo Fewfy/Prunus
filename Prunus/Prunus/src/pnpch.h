@@ -11,6 +11,8 @@
 #include <unordered_set>
 #include <unordered_map>
 
+#include "Prunus/Log.h"
+
 #ifdef PRUNUS_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

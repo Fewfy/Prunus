@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Prunus/Layer.h"
-#include "Prunus/Log.h"
 
 #include "Prunus/Events/MouseEvent.h"
 #include "Prunus/Events/KeyEvent.h"

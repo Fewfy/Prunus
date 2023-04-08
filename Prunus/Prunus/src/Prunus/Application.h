@@ -1,8 +1,8 @@
 #pragma once
 #include "Core.h"
-#include "Events/Event.h"
 #include "Window.h"
 #include "Prunus/LayerStack.h"
+#include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
 namespace Prunus {

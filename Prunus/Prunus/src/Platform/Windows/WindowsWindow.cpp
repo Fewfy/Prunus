@@ -1,24 +1,26 @@
 #include "pnpch.h"
 #include "WindowsWindow.h"
-#include "Prunus/Log.h"
+
 #include "Prunus/Events/ApplicationEvent.h"
-#include "Prunus/Events/KeyEvent.h"
 #include "Prunus/Events/MouseEvent.h"
+#include "Prunus/Events/KeyEvent.h"
+
 #include <glad/glad.h>
-namespace Prunus
-{
+
+namespace Prunus {
+
 	static bool s_GLFWInitialized = false;
 
-	static bool GLFWErrorCallback(int error, const char* description)
+	static void GLFWErrorCallback(int error, const char* description)
 	{
 		PRUNUS_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
-	
+
 	Window* Window::Create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);
 	}
-	
+
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
 		Init(props);
@@ -26,26 +28,28 @@ namespace Prunus
 
 	WindowsWindow::~WindowsWindow()
 	{
+		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
 		m_Data.Title = props.Title;
-		m_Data.Height = props.Height;
 		m_Data.Width = props.Width;
-		PRUNUS_CORE_INFO("Creating window {0}, ({1}, {2})", m_Data.Title, m_Data.Height, m_Data.Width);
+		m_Data.Height = props.Height;
+
+		PRUNUS_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{
+			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			PRUNUS_CORE_ASSERT(success, "Could not initialize GLFW!");
-
+			PRUNUS_CORE_ASSERT(success, "Could not intialize GLFW!");
+			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
-
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		PRUNUS_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -55,10 +59,10 @@ namespace Prunus
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			data.Height = height;
 			data.Width = width;
+			data.Height = height;
 
-			WindowResizeEvent event(height, width);
+			WindowResizeEvent event(width, height);
 			data.EventCallback(event);
 		});
 
@@ -75,25 +79,24 @@ namespace Prunus
 
 			switch (action)
 			{
-				case GLFW_PRESS:
-				{
-					KeyPressedEvent event(key, 0);
-					data.EventCallback(event);
-					break;
-				}
-				
-				case GLFW_RELEASE:
-				{
-					KeyReleasedEvent event(key);
-					data.EventCallback(event);
-					break;
-				}
-				case GLFW_REPEAT:
-				{
-					KeyPressedEvent event(key, 1);
-					data.EventCallback(event);
-					break;
-				}
+			case GLFW_PRESS:
+			{
+				KeyPressedEvent event(key, 0);
+				data.EventCallback(event);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				KeyReleasedEvent event(key);
+				data.EventCallback(event);
+				break;
+			}
+			case GLFW_REPEAT:
+			{
+				KeyPressedEvent event(key, 1);
+				data.EventCallback(event);
+				break;
+			}
 			}
 		});
 
@@ -103,25 +106,26 @@ namespace Prunus
 
 			switch (action)
 			{
-				case GLFW_PRESS:
-				{
-					MouseButtonPressedEvent event(button);
-					data.EventCallback(event);
-					break;
-				}
-				case GLFW_RELEASE:
-				{
-					MouseButtonReleasedEvent event(button);
-					data.EventCallback(event);
-					break;
-				}
+			case GLFW_PRESS:
+			{
+				MouseButtonPressedEvent event(button);
+				data.EventCallback(event);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				MouseButtonReleasedEvent event(button);
+				data.EventCallback(event);
+				break;
+			}
 			}
 		});
 
-		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			MouseScrolledEvent event(xoffset, yoffset);
+
+			MouseScrolledEvent event((float)xOffset, (float)yOffset);
 			data.EventCallback(event);
 		});
 
@@ -129,7 +133,7 @@ namespace Prunus
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			MouseMovedEvent event(xPos, yPos);
+			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 		});
 	}
@@ -159,4 +163,5 @@ namespace Prunus
 	{
 		return m_Data.VSync;
 	}
+
 }
