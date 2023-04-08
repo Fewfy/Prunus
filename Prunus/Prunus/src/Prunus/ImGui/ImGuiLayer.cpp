@@ -3,9 +3,10 @@
 
 #include "imgui.h"
 #include "Platform/OpenGL/ImGuiOpenGLRender.h"
+#include "Prunus/Application.h"
 
 #include "GLFW/glfw3.h"
-#include "Prunus/Application.h"
+#include <glad/glad.h>
 
 namespace Prunus
 {
@@ -88,6 +89,7 @@ namespace Prunus
 		dispatcher.Dispatch<KeyPressedEvent>(PRUNUS_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
 		dispatcher.Dispatch<KeyReleasedEvent>(PRUNUS_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
 		dispatcher.Dispatch<WindowResizeEvent>(PRUNUS_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
+		dispatcher.Dispatch<KeyTypedEvent>(PRUNUS_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
 	}
 
 	bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
@@ -124,15 +126,43 @@ namespace Prunus
 
 	bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& e)
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.KeysDown[e.GetKeyCode()] = true;
+
+		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+
 		return false;
 	}
+
 	bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& e) 
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.KeysDown[e.GetKeyCode()] = false;
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+
+		int keycode = e.GetKeyCode();
+		if (keycode > 0 && keycode < 0x10000)
+			io.AddInputCharacter((unsigned int)keycode);
+
 		return false;
 	}
 
 	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+		glViewport(0, 0, e.GetWidth(), e.GetHeight());
+
 		return false;
 	}
 }

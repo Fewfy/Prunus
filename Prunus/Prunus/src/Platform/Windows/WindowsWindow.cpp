@@ -136,6 +136,14 @@ namespace Prunus {
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int character)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(character);
+			data.EventCallback(event);
+		});
 	}
 
 	void WindowsWindow::Shutdown()
