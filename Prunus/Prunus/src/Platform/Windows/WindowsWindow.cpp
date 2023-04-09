@@ -16,6 +16,11 @@ namespace Prunus {
 		PRUNUS_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
+	void* WindowsWindow::GetNativeWindow() const
+	{
+		return m_Window;
+	}
+
 	Window* Window::Create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);

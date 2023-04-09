@@ -152,6 +152,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Prunus\Input.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRender.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Prunus.h" />
@@ -171,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRender.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Prunus\Application.cpp" />
     <ClCompile Include="src\Prunus\ImGui\ImGuiLayer.cpp" />

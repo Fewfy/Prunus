@@ -20,6 +20,7 @@ namespace Prunus
 		bool IsVSync() const override;
 		void SetVSync(bool enabled) override;
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+		void* GetNativeWindow() const override;
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
