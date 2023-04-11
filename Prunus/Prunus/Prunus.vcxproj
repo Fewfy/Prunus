@@ -165,9 +165,11 @@
     <ClInclude Include="src\Prunus\Events\KeyEvent.h" />
     <ClInclude Include="src\Prunus\Events\MouseEvent.h" />
     <ClInclude Include="src\Prunus\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Prunus\KeyCode.h" />
     <ClInclude Include="src\Prunus\Layer.h" />
     <ClInclude Include="src\Prunus\LayerStack.h" />
     <ClInclude Include="src\Prunus\Log.h" />
+    <ClInclude Include="src\Prunus\MouseButtonCodes.h" />
     <ClInclude Include="src\Prunus\Window.h" />
     <ClInclude Include="src\pnpch.h" />
   </ItemGroup>

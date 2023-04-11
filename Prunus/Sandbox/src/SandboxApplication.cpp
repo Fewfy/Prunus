@@ -10,11 +10,13 @@ public:
 
 	void OnUpdate() override
 	{
+		if (Prunus::Input::IsKeyPressed(PRUNUS_KEY_SPACE))
+			PRUNUS_INFO("Space key is pressed");
 	}
 
 	void OnEvent(Prunus::Event& event) override
 	{
-		PRUNUS_TRACE("{0}", event);
+		//PRUNUS_TRACE("{0}", event);
 	}
 };
 
