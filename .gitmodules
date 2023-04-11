@@ -7,3 +7,6 @@
 [submodule "Prunus/Prunus/vendor/imgui"]
 	path = Prunus/Prunus/vendor/imgui
 	url = https://github.com/Fewfy/imgui
+[submodule "Prunus/Prunus/vendor/glm"]
+	path = Prunus/Prunus/vendor/glm
+	url = https://github.com/g-truc/glm.git

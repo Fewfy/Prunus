@@ -14,6 +14,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Prunus/vendor/GLFW/include"
 IncludeDir["Glad"] = "Prunus/vendor/Glad/include"
 IncludeDir["ImGui"] = "Prunus/vendor/imgui"
+IncludeDir["glm"] = "Prunus/vendor/glm"
 
 include "Prunus/vendor/GLFW"
 include "Prunus/vendor/Glad"
@@ -33,7 +34,9 @@ project "Prunus"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/**.hpp",
+        "%{prj.name}/vendor/glm/**.inl"
     }
 
     includedirs
@@ -42,7 +45,8 @@ project "Prunus"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -103,7 +107,8 @@ project "Sandbox"
         "Prunus/vendor/spdlog/include",
         "Prunus/src",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.glm}"
     }
 
     links
