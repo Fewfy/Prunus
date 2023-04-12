@@ -4,6 +4,7 @@
 #include "Prunus/LayerStack.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
+#include "Prunus/ImGui/ImGuiLayer.h"
 
 namespace Prunus {
 	class PRUNUS_API Application
@@ -24,6 +25,7 @@ namespace Prunus {
 		bool OnWindowClose(WindowClosedEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

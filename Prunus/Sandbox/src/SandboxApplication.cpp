@@ -26,7 +26,6 @@ public:
 	Sandbox()
 	{
 		Application::PushLayer(new ExampleLayer());
-		Application::PushOverlay(new Prunus::ImGuiLayer());
 	}
 
 	~Sandbox() {
