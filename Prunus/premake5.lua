@@ -22,8 +22,10 @@ include "Prunus/vendor/imgui"
 
 project "Prunus"
     location "Prunus"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -58,8 +60,6 @@ project "Prunus"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "10.0.19041.0"
   
         defines
@@ -68,31 +68,25 @@ project "Prunus"
             "PRUNUS_PLATFORM_WINDOWS",
             "GLFW_INCLUDE_NONE"
         }
-
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-        }
     
     filter "configurations:Debug"
         defines "PRUNUS_DEBUG"
-		buildoptions "/MDd"
         symbols "On"
     
     filter "configurations:Release"
         defines "PRUNUS_RELEASE"
-		buildoptions "/MD"
-        optimize "On"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "PRUNUS_DIST"
-		buildoptions "/MD"
-        optimize "On"
+        optimize "on"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -117,8 +111,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "10.0.19041.0"
 
         defines
@@ -129,14 +121,11 @@ project "Sandbox"
     filter "configurations:Debug"
         defines "PRUNUS_DEBUG"
         symbols "On"
-		buildoptions "/MDd"
     
     filter "configurations:Release"
         defines "PRUNUS_RELEASE"
-        optimize "On"
-		buildoptions "/MD"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "PRUNUS_DIST"
-        optimize "On"
-		buildoptions "/MD"
+        optimize "on"
