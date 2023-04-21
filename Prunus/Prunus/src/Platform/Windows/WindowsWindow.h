@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Prunus/Window.h"
-#include <GLFW/glfw3.h>
+#include "Prunus/Renderer/GraphicsContext.h"
 struct GLFWwindow;
 
 namespace Prunus
@@ -38,5 +38,7 @@ namespace Prunus
 		};
 
 		WindowData m_Data;
+
+		GraphicsContext* m_Context;
 	};
 }

@@ -51,6 +51,11 @@ project "Prunus"
         "%{IncludeDir.glm}"
     }
 
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS"
+    }
+    
     links
     {
         "GLFW",
