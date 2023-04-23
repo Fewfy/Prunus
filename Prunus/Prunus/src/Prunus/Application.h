@@ -5,6 +5,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "Prunus/ImGui/ImGuiLayer.h"
+#include "Prunus/Renderer/Shader.h"
 
 namespace Prunus {
 	class PRUNUS_API Application
@@ -32,6 +33,8 @@ namespace Prunus {
 		static Application* s_Instance;
 
 		unsigned int m_VertexBuffer, m_VertexArray, m_IndexBuffer;
+
+		std::unique_ptr<Shader> m_Shader;
 	};
 
 	Application* CreateApplication();

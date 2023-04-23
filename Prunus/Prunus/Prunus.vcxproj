@@ -159,6 +159,7 @@
     <ClInclude Include="src\Prunus\Log.h" />
     <ClInclude Include="src\Prunus\MouseButtonCodes.h" />
     <ClInclude Include="src\Prunus\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Prunus\Renderer\Shader.h" />
     <ClInclude Include="src\Prunus\Window.h" />
     <ClInclude Include="src\pnpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -591,6 +592,7 @@
     <ClCompile Include="src\pnpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Prunus\Renderer\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
