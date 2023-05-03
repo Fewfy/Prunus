@@ -7,6 +7,7 @@
 #include "Prunus/ImGui/ImGuiLayer.h"
 #include "Prunus/Renderer/Shader.h"
 #include "Prunus/Renderer/Buffer.h"
+#include "Prunus/Renderer/VertexArray.h"
 
 namespace Prunus {
 	class PRUNUS_API Application
@@ -33,11 +34,11 @@ namespace Prunus {
 
 		static Application* s_Instance;
 
-		unsigned int m_VertexArray;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
 
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	};
 
 	Application* CreateApplication();
