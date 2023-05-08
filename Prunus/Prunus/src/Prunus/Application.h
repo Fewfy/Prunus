@@ -8,6 +8,7 @@
 #include "Prunus/Renderer/Shader.h"
 #include "Prunus/Renderer/Buffer.h"
 #include "Prunus/Renderer/VertexArray.h"
+#include "Prunus/Renderer/OrthographicCamera.h"
 
 namespace Prunus {
 	class PRUNUS_API Application
@@ -39,6 +40,8 @@ namespace Prunus {
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	};
 
 	Application* CreateApplication();
