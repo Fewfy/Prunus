@@ -9,6 +9,7 @@
 #include "Prunus/Renderer/Buffer.h"
 #include "Prunus/Renderer/VertexArray.h"
 #include "Prunus/Renderer/OrthographicCamera.h"
+#include "Prunus/Core/Timestep.h"
 
 namespace Prunus {
 	class PRUNUS_API Application
@@ -28,20 +29,14 @@ namespace Prunus {
 	private:
 		bool OnWindowClose(WindowClosedEvent& e);
 
+	private:
+		float m_LastFrameTime = 0.0f;
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
 		static Application* s_Instance;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	};
 
 	Application* CreateApplication();

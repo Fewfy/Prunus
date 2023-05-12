@@ -149,6 +149,7 @@
     <ClInclude Include="src\Prunus.h" />
     <ClInclude Include="src\Prunus\Application.h" />
     <ClInclude Include="src\Prunus\Core.h" />
+    <ClInclude Include="src\Prunus\Core\Timestep.h" />
     <ClInclude Include="src\Prunus\EntryPoint.h" />
     <ClInclude Include="src\Prunus\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Prunus\Events\Event.h" />
