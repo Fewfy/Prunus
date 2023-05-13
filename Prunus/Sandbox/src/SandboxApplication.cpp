@@ -1,10 +1,12 @@
 #include <pnpch.h>
 #include <Prunus.h>
 
+#include "glm/gtx/transform.hpp"
+
 class ExampleLayer : public Prunus::Layer
 {
 public:
-	ExampleLayer() : Layer("Example"), m_Camera(-2.0f, 2.0f, -2.0f, 2.0f), m_CameraPosition(0)
+	ExampleLayer() : Layer("Example"), m_Camera(-2.0f, 2.0f, -2.0f, 2.0f), m_CameraPosition(0), m_SquarePosition(0.0f)
 	{
 		{
 			m_VertexArray.reset(Prunus::VertexArray::Create());
@@ -64,6 +66,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -72,7 +75,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -96,13 +99,14 @@ public:
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 			
 			out vec3 v_Position;
 
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -155,6 +159,26 @@ public:
 			m_CameraRotation += m_CameraRotationSpeed * ts;
 		}
 
+		if (Prunus::Input::IsKeyPressed(PRUNUS_KEY_J))
+		{
+			m_SquarePosition.x -= m_SquareMoveSpeed * ts;
+		}
+
+		if (Prunus::Input::IsKeyPressed(PRUNUS_KEY_L))
+		{
+			m_SquarePosition.x += m_SquareMoveSpeed * ts;
+		}
+
+		if (Prunus::Input::IsKeyPressed(PRUNUS_KEY_I))
+		{
+			m_SquarePosition.y += m_SquareMoveSpeed * ts;
+		}
+
+		if (Prunus::Input::IsKeyPressed(PRUNUS_KEY_K))
+		{
+			m_SquarePosition.y -= m_SquareMoveSpeed * ts;
+		}
+
 		Prunus::RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 0 });
 		Prunus::RenderCommand::Clear();
 
@@ -163,7 +187,9 @@ public:
 		
 		Prunus::Renderer::BeginScene(m_Camera);
 
-		Prunus::Renderer::Submit(m_SquareVA, m_BlueShader);
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+
+		Prunus::Renderer::Submit(m_SquareVA, m_BlueShader, transform);
 		Prunus::Renderer::Submit(m_VertexArray, m_Shader);
 
 		Prunus::Renderer::EndScene();
@@ -192,6 +218,9 @@ private:
 	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquarePosition;
+	float m_SquareMoveSpeed = 1.0f;
 };
 
 class Sandbox : public Prunus::Application
