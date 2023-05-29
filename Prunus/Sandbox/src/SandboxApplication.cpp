@@ -2,6 +2,9 @@
 #include <Prunus.h>
 
 #include "glm/gtx/transform.hpp"
+#include "Platform/OpenGL/OpenGLShader.h"
+#include "imgui.h"
+#include "glm/gtc/type_ptr.hpp"
 
 class ExampleLayer : public Prunus::Layer
 {
@@ -92,7 +95,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Prunus::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Prunus::Shader::Create(vertexSrc, fragmentSrc));
 
 		std::string blueShaderVertexSrc = R"(
 			#version 330 core
@@ -115,14 +118,15 @@ public:
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
+			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_BlueShader.reset(new Prunus::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		m_BlueShader.reset(Prunus::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
 	void OnUpdate(Prunus::Timestep ts) override
@@ -186,13 +190,34 @@ public:
 		m_Camera.SetRotation(m_CameraRotation);
 		
 		Prunus::Renderer::BeginScene(m_Camera);
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
+		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
 
-		Prunus::Renderer::Submit(m_SquareVA, m_BlueShader, transform);
+		std::dynamic_pointer_cast<Prunus::OpenGLShader>(m_BlueShader)->Bind();
+		std::dynamic_pointer_cast<Prunus::OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
+		for(int y = 0;y < 20; y++)
+		{
+			for(int x = 0;x < 20;x ++)
+			{
+				glm::vec3 pos(x * 0.11f, y *0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Prunus::Renderer::Submit(m_SquareVA, m_BlueShader, transform);
+			}
+		}
 		Prunus::Renderer::Submit(m_VertexArray, m_Shader);
 
 		Prunus::Renderer::EndScene();
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Prunus::Event& event) override
@@ -221,6 +246,8 @@ private:
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 1.0f;
+
+	glm::vec3 m_SquareColor = { 0.5, 0.2, 0.3 };
 };
 
 class Sandbox : public Prunus::Application

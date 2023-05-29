@@ -107,6 +107,7 @@ project "Sandbox"
         "Prunus/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}"
     }
 
